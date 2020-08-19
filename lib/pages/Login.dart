@@ -25,6 +25,12 @@ class _LoginState extends State<Login> {
       final msg = json.decode(result)["message"];
       print(msg);
       if ('Successful login.' == msg) {
+        String email = user.text;
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => UserProfile(email)),
+          //page redirect to UserProfile and pass logged user email
+        );
         Fluttertoast.showToast(msg: 'Login successfully');
       }
     });
@@ -65,12 +71,7 @@ class _LoginState extends State<Login> {
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
           _loginUser(_user);
-          String email = user.text;
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => UserProfile(email)),
-            //page redirect to UserProfile and pass logged user email
-          );
+
         },
         child: Text("Login",
             textAlign: TextAlign.center,
